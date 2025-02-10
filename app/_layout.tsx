@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
+import { Stack } from 'expo-router';
 import React from 'react'
 
 export default function RootLayout() {
   return (
-    <View>
-      <Text>_layout</Text>
-    </View>
+   <Stack initialRouteName="(auth)" screenOptions={{ headerShown: false}}  >
+      <Stack.Screen name="(auth)" options={{ headerShown: false}} />
+      <Stack.Screen name="(home)" />
+      <Stack.Screen name="+not-found" />
+   </Stack>
   )
 }
