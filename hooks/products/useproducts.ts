@@ -4,6 +4,7 @@ export default function useProducts() {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
     
     useEffect(() => {
         const fetchProducts = async () => {
@@ -21,8 +22,14 @@ export default function useProducts() {
         fetchProducts();
     }, []);
 
+    const handleBarcodeInput = (input: string) => {
+        setSearchQuery(input);
+    };
+
   return {
     products,
     loading,
+    searchQuery,
+    handleBarcodeInput
   }
 }
