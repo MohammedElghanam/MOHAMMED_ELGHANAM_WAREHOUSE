@@ -22,7 +22,10 @@ const Login = () => {
             style={{ width: 200, height: 200, alignSelf: 'center' , marginBottom: 10, borderRadius: 500}}
         />        
 
-        <View style={[ styles.inputContainer, errors ? { borderColor: 'red' } : null ]}>
+        <View style={
+            // styles.inputContainer
+            [ styles.inputContainer, errors ? { borderColor: 'red' } : null ]
+        }>
             <Ionicons 
                 name="lock-closed-outline" 
                 size={20} 
