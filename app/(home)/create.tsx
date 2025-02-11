@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { View, TextInput, Text, Button, StyleSheet, Image } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 
 const Create = () => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
-  const [stock, setStock] = useState('');
-  const [error, setError] = useState('');
+    
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [image, setImage] = useState('');
+    const [stock, setStock] = useState('');
+    const [barId, setBarId] = useState('');
+    const [error, setError] = useState('');
+    
+    const { barcode } = useLocalSearchParams();
+
+    useEffect(() => {
+        if (barcode && typeof barcode === 'string') {
+            const codbarData = JSON.parse(barcode);
+            setBarId(codbarData); 
+        }
+    }, [barcode]); 
+
 
   const handleSubmit = () => {
-    // Basic validation
     if (!name || !price || !image || !stock) {
       setError('All fields are required');
       return;
     }
 
-    // Creating product object
     const newProduct = {
       name,
       price,
@@ -36,45 +47,52 @@ const Create = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Create Product</Text>
+        <Text style={styles.heading}>Create Product</Text>
 
-      {error ? <Text style={styles.error}>{error}</Text> : null}
+        {error ? <Text style={styles.error}>{error}</Text> : null}
 
-      <TextInput
-        style={styles.input}
-        placeholder="Product Name"
-        value={name}
-        onChangeText={setName}
-      />
+        <TextInput
+            style={styles.input}
+            placeholder="Product Name"
+            value={name}
+            onChangeText={setName}
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Price"
-        value={price}
-        keyboardType="numeric"
-        onChangeText={setPrice}
-      />
+        <TextInput
+            style={styles.input}
+            placeholder="Price"
+            value={price}
+            keyboardType="numeric"
+            onChangeText={setPrice}
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Image URL"
-        value={image}
-        onChangeText={setImage}
-      />
+        <TextInput
+            style={styles.input}
+            placeholder="Image URL"
+            value={image}
+            onChangeText={setImage}
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Stock Quantity"
-        value={stock}
-        keyboardType="numeric"
-        onChangeText={setStock}
-      />
+        <TextInput
+            style={styles.input}
+            placeholder="Bar Code"
+            value={barId}
+            onChangeText={setBarId}
+        />
 
-      <Button title="Submit" onPress={handleSubmit} />
+        <TextInput
+            style={styles.input}
+            placeholder="Stock Quantity"
+            value={stock}
+            keyboardType="numeric"
+            onChangeText={setStock}
+        />
 
-      <View style={styles.preview}>
-        {image ? <Image source={{ uri: image }} style={styles.imagePreview} /> : null}
-      </View>
+        <Button title="Submit" onPress={handleSubmit} />
+
+        <View style={styles.preview}>
+            {image ? <Image source={{ uri: image }} style={styles.imagePreview} /> : null}
+        </View>
     </View>
   );
 };
