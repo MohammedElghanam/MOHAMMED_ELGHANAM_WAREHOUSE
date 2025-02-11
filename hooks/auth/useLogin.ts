@@ -9,6 +9,8 @@ const useLogin = () => {
 
 
     const handleSubmit = async () => {
+        console.log(secretKey);
+        
 
         if (!secretKey) {
             setErrors("Please enter a secret key.");
@@ -18,8 +20,10 @@ const useLogin = () => {
         try {
             const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/warehousemans`);
             const users = await response.json();
+            console.log(users);
+            
 
-            const user = users.find((user: any) => user.secret_key === secretKey);
+            const user = users.find((user: any) => user.secretKey === secretKey);
 
             if (user) {
                 router.replace('/(home)');
