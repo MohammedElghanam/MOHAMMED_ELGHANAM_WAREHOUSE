@@ -16,7 +16,7 @@ const useLogin = () => {
         }
         
         try {
-            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/users`);
+            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/warehousemans`);
             const users = await response.json();
 
             const user = users.find((user: any) => user.secret_key === secretKey);
