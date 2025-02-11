@@ -14,17 +14,19 @@ export default function useScanner() {
 
         const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`);
         const products = await response.json();
-        console.log(products);
+        // console.log(products);
 
         const product = products.find((product: any) => product.barcode === data);
 
         if (product) {
             // router.replace('/(home)/details'); 
         } else {
-            // router.replace('/(home)/form'); //with data
+            router.push({
+                pathname: "/(home)/create",
+                params: { barcode: JSON.stringify(data) }, 
+            });
+            setScanned(false);
         }
-                
-        alert(`Barcode scanned! Type: ${type}, Data: ${data}`);
     };
     
     function toggleCameraFacing() {
