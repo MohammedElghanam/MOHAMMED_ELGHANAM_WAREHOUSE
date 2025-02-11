@@ -1,9 +1,20 @@
 import useProducts from '@/hooks/products/useproducts';
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
+const { width } = Dimensions.get('window');
 
 type Stock = {
   quantity: number;
+};
+
+type Product = {
+    id: number;
+    image: string;
+    name: string;
+    solde: number;
+    price: number;
+    type: string;
+    stocks: Stock[];
 };
 
 export default function Index() {
@@ -24,78 +35,87 @@ export default function Index() {
         );
     }
   
+    
 
     return (
         <View style={styles.container}>
         <FlatList
             data={products}
             keyExtractor={(item: any) => item.id.toString()}
-            renderItem={({ item }: any) => (
-            <View style={styles.productCard}>
-                <Image source={{ uri: item.image }} style={styles.productImage} />
-                <View style={styles.productDetails}>
-                <Text style={styles.productName}>{item.name}</Text>
-                <Text style={styles.productPrice}>💰 {item.solde} $ (was {item.price} $)</Text>
-                <Text style={styles.productType}>📦 Category: {item.type}</Text>
-                <Text style={styles.productStock}>
-                    {item.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0)}
-                </Text>
+            renderItem={({ ite }: any) => (
+                <View style={styles.container}>
+                    {products.map((item: Product, index) => (
+                    <View key={index} style={styles.productCard}>
+                        <Image source={{ uri: item.image }} style={styles.productImage} />
+                        <View style={styles.productDetails}>
+                        <Text style={styles.productName}>{item.name}</Text>
+                        <Text style={styles.productPrice}>💰 {item.solde} $ (was {item.price} $)</Text>
+                        <Text style={styles.productType}>📦 Category: {item.type}</Text>
+                        <Text style={styles.productStock}>
+                            {item.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0)} in stock
+                        </Text>
+                        </View>
+                    </View>
+                    ))}
                 </View>
-            </View>
             )}
         />
         </View>
     );
 }
 
+
 const styles = StyleSheet.create({
+
     container: {
-        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
         padding: 10,
-        backgroundColor: '#f8f9fa',
+    },
+    productCard: {
+        width: (width / 2) - 20, // Two products per row with some spacing
+        marginBottom: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
+        padding: 10,
+    },
+    productImage: {
+        width: '100%',
+        height: 150,
+        borderRadius: 10,
+        resizeMode: 'cover',
+    },
+    productDetails: {
+        marginTop: 10,
+    },
+    productName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: '#333',
+    },
+    productPrice: {
+        fontSize: 14,
+        color: '#888',
+    },
+    productType: {
+        fontSize: 12,
+        color: '#666',
+    },
+    productStock: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#4CAF50',
     },
     loaderContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    productCard: {
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        marginBottom: 10,
-        padding: 10,
-        borderRadius: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 3,
-    },
-    productImage: {
-        width: 80,
-        height: 80,
-        borderRadius: 8,
-        marginRight: 10,
-    },
-    productDetails: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    productName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#2c3e50',
-    },
-    productPrice: {
-        fontSize: 14,
-        color: '#e74c3c',
-    },
-    productType: {
-        fontSize: 12,
-        color: '#7f8c8d',
-    },
-    productStock: {
-        fontSize: 12,
-        color: '#27ae60',
     },
 });
