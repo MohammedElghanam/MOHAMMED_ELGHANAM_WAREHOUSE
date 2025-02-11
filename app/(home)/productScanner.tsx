@@ -1,11 +1,18 @@
-import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
+import useScanner from '@/hooks/camera/useScanner';
+import { CameraView } from 'expo-camera';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function ProductScanner() {
-  const [facing, setFacing] = useState<CameraType>('back');
-  const [permission, requestPermission] = useCameraPermissions();
-  const [scanned, setScanned] = useState(false);
+
+    const {
+        facing,
+        permission,
+        scanned,
+        requestPermission,
+        handleBarCodeScanned,
+        toggleCameraFacing,
+    } = useScanner();
+
 
   if (!permission) {
     return <View />;
@@ -20,15 +27,6 @@ export default function ProductScanner() {
     );
   }
 
-  const handleBarCodeScanned = ({ type, data }: { type: string; data: string }) => {
-    setScanned(true);
-    alert(`Barcode scanned! Type: ${type}, Data: ${data}`);
-  };
-
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  }
-
   return (
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing} onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} >
@@ -36,9 +34,6 @@ export default function ProductScanner() {
             <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
                 <Text style={styles.text}>Flip Camera</Text>
             </TouchableOpacity>
-            {scanned && (
-                <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
-            )}
         </View>
       </CameraView>
     </View>
