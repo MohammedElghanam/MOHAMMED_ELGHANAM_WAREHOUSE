@@ -19,7 +19,11 @@ export default function useScanner() {
         const product = products.find((product: any) => product.barcode === data);
 
         if (product) {
-            // router.replace('/(home)/details'); 
+            router.push({
+                pathname: "/productDetails",
+                params: { barcode: JSON.stringify(data) }, 
+            });
+            setScanned(false);
         } else {
             router.push({
                 pathname: "/(home)/create",
