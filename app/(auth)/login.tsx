@@ -2,9 +2,17 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Image, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import useLogin from '@/hooks/auth/useLogin';
  
 
-const Login = () => {  
+const Login = () => { 
+    
+    const {  
+        errors,
+        secretKey,
+        setSecretKey,
+        handleSubmit
+    } = useLogin();
 
   return (
     
@@ -16,27 +24,27 @@ const Login = () => {
 
         <View style={
             styles.inputContainer
-            // [ styles.inputContainer, errors.password ? { borderColor: 'red' } : null ]
+            // [ styles.inputContainer, errors ? { borderColor: 'red' } : null ]
         }>
             <Ionicons 
                 name="lock-closed-outline" 
                 size={20} 
-                // color={ errors.password ? 'red' : "gray" } 
+                // color={ errors ? 'red' : "gray" } 
             />
             <TextInput
                 style={styles.input}
-                placeholder="Password"
-                // placeholderTextColor={errors.password ? 'red' : 'gray'}
+                placeholder="Enter secret key"
+                placeholderTextColor={errors ? 'red' : 'gray'}
                 secureTextEntry
-                // value={password}
-                // onChangeText={setPassword}
+                value={secretKey}
+                onChangeText={setSecretKey}
             />
         </View>
-        {/* {errors.password && <Text style={styles.error}>{errors.password}</Text>} */}
+        {/* {errors && <Text style={styles.error}>{errors}</Text>} */}
 
         <View style={styles.btn}>
             <Text style={styles.text} 
-                // onPress={handleSubmit} 
+                onPress={handleSubmit} 
             >Login</Text>
         </View>
 
