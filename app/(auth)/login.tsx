@@ -23,13 +23,13 @@ const Login = () => {
         />        
 
         <View style={
-            styles.inputContainer
-            // [ styles.inputContainer, errors ? { borderColor: 'red' } : null ]
+            // styles.inputContainer
+            [ styles.inputContainer, errors ? { borderColor: 'red' } : null ]
         }>
             <Ionicons 
                 name="lock-closed-outline" 
                 size={20} 
-                // color={ errors ? 'red' : "gray" } 
+                color={ errors ? 'red' : "gray" } 
             />
             <TextInput
                 style={styles.input}
@@ -40,7 +40,7 @@ const Login = () => {
                 onChangeText={setSecretKey}
             />
         </View>
-        {/* {errors && <Text style={styles.error}>{errors}</Text>} */}
+        {errors && <Text style={styles.error}>{errors}</Text>}
 
         <View style={styles.btn}>
             <Text style={styles.text} 
