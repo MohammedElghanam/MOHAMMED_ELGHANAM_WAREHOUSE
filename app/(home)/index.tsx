@@ -1,3 +1,4 @@
+import ProductCard from '@/components/UI/productCard';
 import useProducts from '@/hooks/products/useProducts';
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions, TextInput } from 'react-native';
@@ -22,8 +23,11 @@ export default function Index() {
     products,
     loading,
     searchQuery,
-    handleBarcodeInput
+    handleBarcodeInput,
+    showDetails
   } = useProducts();
+
+  
 
   if (loading) {
     return (
@@ -50,19 +54,7 @@ export default function Index() {
         keyExtractor={(item: Product) => item.id.toString()}
         numColumns={2} 
         columnWrapperStyle={styles.row} 
-        renderItem={({ item }: { item: Product }) => (
-          <View style={styles.productCard}>
-            <Image source={{ uri: item.image }} style={styles.productImage} />
-            <View style={styles.productDetails}>
-              <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.productPrice}>💰 {item.solde} $ (was {item.price} $)</Text>
-              <Text style={styles.productType}>📦 Category: {item.type}</Text>
-              <Text style={styles.productStock}>
-                {item.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0)} in stock
-              </Text>
-            </View>
-          </View>
-        )}
+        renderItem={({ item }: { item: Product }) => <ProductCard product={item} showD={showDetails} /> }
       />
     </View>
   );
