@@ -16,7 +16,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     const [stockName, setStockName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [city, setCity] = useState('');
-    const [warehousemanId, setWarehousemanId] = useState<number | null>(null);
+    // const [warehousemanId, setWarehousemanId] = useState<number | null>(null);
     const [errors,setErrors] = useState<{ [key: string]: string }>({});
 
     const warehouseOptions = [
@@ -25,8 +25,8 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     ];
 
     interface User {
-        id: number;
-        token: string;
+        id: number,
+        secretKey: string;
     }
 
     interface Product {
@@ -61,19 +61,8 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
             setBarcode(codbarData); 
         }
     
-        const getTokenData = async () => {
-          try {
-            const token = await AsyncStorage.getItem('userToken');
-            if (token) {
-              const warehousemanData = await fetchWarehousemanFromDB(token);
-              setWarehousemanId(warehousemanData?.id || null);
-            }
-          } catch (error) {
-            console.error('Error retrieving token:', error);
-          }
-        };
+        
     
-        getTokenData();
     }, [codeScanned]);
 
     const handleSubmit = async () => {
@@ -84,6 +73,9 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         if (Object.keys(errorMessage).length != 0) {
             return;
         }
+
+        const warehousemanId = await getTokenData();
+        
         const newProduct = {
             name,
             type,
@@ -94,33 +86,42 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
             image,
             stocks: [
                 {
-                name: stockName,
-                quantity: parseInt(quantity),
-                localisation: {
-                    city
-                }
+                    name: stockName,
+                    quantity: parseInt(quantity),
+                    localisation: {
+                        city
+                    }
                 }
             ],
             editedBy: warehousemanId ? [{ warehousemanId, at: new Date().toISOString().split('T')[0] }] : []
         };
 
         try {
+
+            
+       
+            // console.log("New Product:", JSON.stringify(newProduct, null, 2));
+            
             await insertProduct(newProduct);
             Alert.alert('Success', 'Product added successfully!');
         } catch (error) {
+            console.log(error);
+            
             Alert.alert('Error', 'Failed to save product.');
         }
     }
 
     const insertProduct = async (product: Product): Promise<Product> => {
         try {
-            const response = await fetch('http://localhost:3000/products', {
+            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(product)
             });
     
             if (!response.ok) throw new Error('Failed to save product');
+            console.log(response);
+            
             return await response.json();
         } catch (error) {
             console.error('Error inserting product:', error);
@@ -149,12 +150,24 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
 
     const fetchWarehousemanFromDB = async (token: string): Promise<User | null> => {
         try {
-            const response = await fetch('http://localhost:3000/users'); // Replace with actual API
-            const users: User[] = await response.json();
-            return users.find(user => user.token === token) || null;
+            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/warehousemans`); 
+            const users: User[] = await response.json();                        
+            return users.find(user => user.secretKey === token) || null;
         } catch (error) {
             console.error('Error fetching user:', error);
             return null;
+        }
+    };
+
+    const getTokenData = async () => {
+        try {
+          const token = await AsyncStorage.getItem('token');
+          if (token) {
+            const warehousemanData = await fetchWarehousemanFromDB(token);            
+            return warehousemanData?.id;
+          }
+        } catch (error) {
+          console.error('Error retrieving token:', error);
         }
     };
 
