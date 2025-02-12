@@ -25,11 +25,13 @@ export default function useScanner() {
             });
             setScanned(false);
         } else {
+            console.log(data);
+            
             router.push({
-                pathname: "/(home)/create",
-                params: { barcode: JSON.stringify(data) }, 
+                pathname: "/productCreate",
+                params: { codeScanned: JSON.stringify(data) }, 
             });
-            setScanned(false);
+            setScanned(true);
         }
     };
     

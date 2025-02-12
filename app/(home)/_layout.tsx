@@ -27,15 +27,6 @@ export default function _layout() {
             }}
         />
         <Tabs.Screen 
-            name="create" 
-            options={{ 
-                title: '',
-                tabBarShowLabel: false,
-                tabBarIcon: () => <Ionicons name="add-circle" size={30} color="blue" />,
-                headerShown: false,
-            }}
-        />
-        <Tabs.Screen 
             name="productScanner" 
             options={{ 
                 title: 'Scanner',

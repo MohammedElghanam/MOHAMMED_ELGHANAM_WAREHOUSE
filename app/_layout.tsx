@@ -8,6 +8,7 @@ export default function RootLayout() {
       <Stack.Screen name="(home)" />
       <Stack.Screen name="+not-found" />
       <Stack.Screen name="productDetails" options={{ presentation: "card", headerShown: false }} />
+      <Stack.Screen name="productCreate" options={{ presentation: "card", headerShown: false }} />
    </Stack>
   )
 }
