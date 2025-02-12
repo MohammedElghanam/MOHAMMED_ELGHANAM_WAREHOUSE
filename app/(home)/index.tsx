@@ -1,4 +1,4 @@
-import useProducts from '@/hooks/products/useproducts';
+import useProducts from '@/hooks/products/useProducts';
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions, TextInput } from 'react-native';
 const { width } = Dimensions.get('window');
