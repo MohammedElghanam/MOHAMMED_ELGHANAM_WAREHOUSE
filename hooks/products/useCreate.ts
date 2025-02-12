@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from "expo-image-picker";
 import { Alert } from "react-native";
+import useValidation from "../validation/useValidation";
 
 export default function useCreate({codeScanned}: { codeScanned: string }) {
+    const { validateFields } = useValidation();
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [barcode, setBarcode] = useState('');
@@ -15,6 +17,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     const [quantity, setQuantity] = useState('');
     const [city, setCity] = useState('');
     const [warehousemanId, setWarehousemanId] = useState<number | null>(null);
+    const [errors,setErrors] = useState<{ [key: string]: string }>({});
 
     const warehouseOptions = [
         { id: '1', name: 'Gueliz B2', city: 'Marrakesh' },
@@ -74,11 +77,13 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     }, [codeScanned]);
 
     const handleSubmit = async () => {
-        if (!name || !type || !barcode || !price || !solde || !supplier || !image || !stockName || !quantity || !city) {
-            Alert.alert('Error', 'All fields are required!');
+
+        const errorMessage = validateFields({ name, type, barcode, price: parseFloat(price), solde: parseFloat(solde), supplier, image, stockName, quantity: parseInt(quantity), city });
+        setErrors(errorMessage);
+
+        if (Object.keys(errorMessage).length != 0) {
             return;
         }
-
         const newProduct = {
             name,
             type,
@@ -153,6 +158,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         }
     };
 
+
     return {
         name,
         type,
@@ -175,6 +181,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         setSolde,
         handleSubmit,
         pickImage,
-        warehouseOptions
+        warehouseOptions,
+        errors
     }
 }
