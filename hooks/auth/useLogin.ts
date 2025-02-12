@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'expo-router';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const useLogin = () => {
     const router = useRouter();
@@ -26,6 +27,7 @@ const useLogin = () => {
             const user = users.find((user: any) => user.secretKey === secretKey);
 
             if (user) {
+                await AsyncStorage.setItem('token', user.secretKey);
                 router.replace('/(home)');
             } else {
                 setErrors("The secret key entered is incorrect.");
