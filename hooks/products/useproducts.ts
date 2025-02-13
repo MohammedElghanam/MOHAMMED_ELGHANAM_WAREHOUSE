@@ -1,12 +1,13 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { FlatList, TextInput, View, StyleSheet } from 'react-native';
 
 export default function useProducts() {
-
     const router = useRouter();
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
     type Stock = {
       quantity: number;
@@ -26,36 +27,45 @@ export default function useProducts() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`);
-            const data = await response.json();
-            setProducts(data);
+                const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/products`);
+                const data = await response.json();
+                // console.log(data);
+                setProducts(data);
+                setFilteredProducts(data);
             } catch (error) {
-            console.error('Error fetching products:', error);
+                console.error('Error fetching products:', error);
             } finally {
-            setLoading(false);
+                setLoading(false);
             }
         };
         
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        const result = products.filter(product =>
+          product.barcode.includes(searchQuery.toLowerCase())
+        );
+        setFilteredProducts(result);
+    }, [searchQuery, products]);
+
     const handleBarcodeInput = (input: string) => {
         setSearchQuery(input);
     };
 
     const showDetails = (product: Product) => {
-        console.log(JSON.stringify(product.barcode));
         router.push({
           pathname: "/productDetails",
           params: { barcode: JSON.stringify(product.barcode) }, 
         });
-      };
+    };
 
-  return {
-    products,
-    loading,
-    searchQuery,
-    handleBarcodeInput,
-    showDetails
-  }
+    return {
+        products,
+        loading,
+        searchQuery,
+        handleBarcodeInput,
+        showDetails,
+        filteredProducts,
+    };
 }

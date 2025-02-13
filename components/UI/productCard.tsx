@@ -22,6 +22,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, showD }: ProductCardProps) {
+    
   return (
     <TouchableOpacity style={styles.productCard} onPress={() => showD(product)}>
                 <Image source={{ uri: product.image }} style={styles.productImage} />

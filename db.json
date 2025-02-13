@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Laptop HP Pavilion",
       "type": "Informatique",
-      "barcode": "859553004108",
+      "barcode": "11",
       "price": 1200,
       "solde": 1100,
       "supplier": "HP",
@@ -205,6 +205,56 @@
         {
           "name": "Gueliz B2",
           "quantity": 9,
+          "localisation": {
+            "city": "Marrakesh"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": 1333,
+          "at": "2025-02-13"
+        }
+      ]
+    },
+    {
+      "id": "c263",
+      "name": "Anas",
+      "type": "Electronics",
+      "barcode": "798716163545",
+      "price": 58,
+      "solde": 74,
+      "supplier": "Test",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/3fc90977-6711-4922-ab8d-c1114c0f2f32.png",
+      "stocks": [
+        {
+          "name": "Lazari H2",
+          "quantity": 6,
+          "localisation": {
+            "city": "Oujda"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": 1333,
+          "at": "2025-02-13"
+        }
+      ]
+    },
+    {
+      "id": "af26",
+      "name": "Hanane",
+      "type": "Informatique",
+      "barcode": "075278950241",
+      "price": 14,
+      "solde": 58,
+      "supplier": "Qwe",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/085969f3-225b-44b8-b952-e6a345e5cfdf.png",
+      "stocks": [
+        {
+          "name": "Gueliz B2",
+          "quantity": 7,
           "localisation": {
             "city": "Marrakesh"
           }
