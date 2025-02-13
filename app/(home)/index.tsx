@@ -1,6 +1,7 @@
+import CategoryFiltrage from '@/components/UI/categoryFiltrage';
+import Header from '@/components/UI/header';
 import ProductCard from '@/components/UI/productCard';
 import useProducts from '@/hooks/products/useProducts';
-import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions, TextInput } from 'react-native';
 const { width } = Dimensions.get('window');
 
@@ -19,16 +20,10 @@ type Product = {
 };
 
 export default function Index() {
-  const {
-    products,
-    loading,
-    searchQuery,
-    handleBarcodeInput,
-    showDetails
-  } = useProducts();
+
+    const { filteredProducts, loading, searchQuery, handleBarcodeInput, showDetails } = useProducts();
 
   
-
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
@@ -40,22 +35,26 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Entrez le code barre"
-          value={searchQuery}
-          onChangeText={handleBarcodeInput}
-        />
-      </View>
 
+        {/* <CategoryFiltrage /> */}
+
+        <Header searchQuery={searchQuery} handleBarcodeInput={handleBarcodeInput} />
+
+        {/* <TextInput
+            placeholder="Search by name"
+            value={searchQuery}
+            onChangeText={(text) => handleBarcodeInput(text)}
+        /> */}
+
+    <View style={styles.productContainer}>
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={(item: Product, index) => index.toString()}
         numColumns={2} 
         columnWrapperStyle={styles.row} 
         renderItem={({ item }: { item: Product }) => <ProductCard product={item} showD={showDetails} /> }
       />
+      </View>
     </View>
   );
 }
@@ -63,27 +62,13 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    // padding: 10,
     backgroundColor: '#f5f5f5',
   },
-  searchBar: {
-    marginBottom: 10,
+  productContainer: {
+    flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  searchInput: {
-    height: 40,
-    paddingLeft: 10,
-    fontSize: 16,
-    borderRadius: 5,
-    borderColor: '#ccc',
-    borderWidth: 1,
+    backgroundColor: '#f5f5f5',
   },
   row: {
     justifyContent: 'space-between',

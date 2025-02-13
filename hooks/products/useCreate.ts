@@ -3,8 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from "expo-image-picker";
 import { Alert } from "react-native";
 import useValidation from "../validation/useValidation";
+import { useRouter } from "expo-router";
 
 export default function useCreate({codeScanned}: { codeScanned: string }) {
+    const router = useRouter();
     const { validateFields } = useValidation();
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -16,7 +18,6 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     const [stockName, setStockName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [city, setCity] = useState('');
-    // const [warehousemanId, setWarehousemanId] = useState<number | null>(null);
     const [errors,setErrors] = useState<{ [key: string]: string }>({});
 
     const warehouseOptions = [
@@ -55,14 +56,10 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
     }
 
     useEffect(() => {
-
         if (codeScanned && typeof codeScanned === 'string') {
             const codbarData = JSON.parse(codeScanned);
             setBarcode(codbarData); 
         }
-    
-        
-    
     }, [codeScanned]);
 
     const handleSubmit = async () => {
@@ -97,13 +94,23 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         };
 
         try {
-
-            
-       
-            // console.log("New Product:", JSON.stringify(newProduct, null, 2));
             
             await insertProduct(newProduct);
             Alert.alert('Success', 'Product added successfully!');
+
+            setName('');
+            setType('');
+            setBarcode('');
+            setPrice('');
+            setSolde('');
+            setSupplier('');
+            setImage('');
+            setStockName('');
+            setQuantity('');
+            setCity('');
+
+            router.replace('/(home)');
+
         } catch (error) {
             console.log(error);
             
@@ -120,7 +127,6 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
             });
     
             if (!response.ok) throw new Error('Failed to save product');
-            console.log(response);
             
             return await response.json();
         } catch (error) {
