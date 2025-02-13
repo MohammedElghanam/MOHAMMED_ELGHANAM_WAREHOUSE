@@ -51,7 +51,7 @@ export default function Index() {
 
       <FlatList
         data={products}
-        keyExtractor={(item: Product) => item.id.toString()}
+        keyExtractor={(item: Product, index) => index.toString()}
         numColumns={2} 
         columnWrapperStyle={styles.row} 
         renderItem={({ item }: { item: Product }) => <ProductCard product={item} showD={showDetails} /> }

@@ -16,17 +16,32 @@ interface Product {
     stocks: Stock[];
 }
 
-export default function ProductCard({ product, showD }: { product: Product; showD: (product: Product) => void }) {
+interface ProductCardProps {
+    product: Product; 
+    showD: (product: Product) => void;
+}
+
+export default function ProductCard({ product, showD }: ProductCardProps) {
   return (
     <TouchableOpacity style={styles.productCard} onPress={() => showD(product)}>
                 <Image source={{ uri: product.image }} style={styles.productImage} />
                 <View style={styles.productDetails}>
-                  <Text style={styles.productName}>{product.name}</Text>
-                  <Text style={styles.productPrice}>💰 {product.solde} $ (was {product.price} $)</Text>
-                  <Text style={styles.productType}>📦 Category: {product.type}</Text>
-                  <Text style={styles.productStock}>
-                    {product.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0)} in stock
-                  </Text>
+                    <Text style={styles.productName}>{product.name}</Text>
+                    <Text style={styles.productPrice}>💰 {product.solde} $ (was {product.price} $)</Text>
+                    <Text style={styles.productType}>📦 Category: {product.type}</Text>
+                    <Text 
+                        style={[
+                            styles.productStock, 
+                            product.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0) === 0 
+                            ? { color: 'red' }
+                            : product.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0) < 10
+                                ? { color: '#EFB036' }
+                                : {}
+                        ]}
+                    >
+                        {product.stocks.reduce((sum: number, stock: Stock) => sum + stock.quantity, 0)} in stock
+                    </Text>
+
                 </View>
               </TouchableOpacity>
   )
