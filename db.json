@@ -191,6 +191,31 @@
           "at": "2025-02-12"
         }
       ]
+    },
+    {
+      "id": "cf1e",
+      "name": "Wahd lbnt lbi3",
+      "type": "Informatique",
+      "barcode": "078742009520",
+      "price": 158,
+      "solde": 74,
+      "supplier": "Asdfgh",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/cc1f782d-b428-4b17-81b1-a8b19af5ec62.jpeg",
+      "stocks": [
+        {
+          "name": "Gueliz B2",
+          "quantity": 9,
+          "localisation": {
+            "city": "Marrakesh"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": 1333,
+          "at": "2025-02-13"
+        }
+      ]
     }
   ],
   "warehousemans": [

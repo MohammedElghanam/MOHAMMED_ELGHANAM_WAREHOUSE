@@ -1,10 +1,27 @@
+import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 
 export default function useProducts() {
 
+    const router = useRouter();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
+
+    type Stock = {
+      quantity: number;
+    };
+    
+    type Product = {
+      id: number;
+      image: string;
+      name: string;
+      solde: number;
+      price: number;
+      type: string;
+      stocks: Stock[];
+      barcode: string;
+    };
     
     useEffect(() => {
         const fetchProducts = async () => {
@@ -26,10 +43,19 @@ export default function useProducts() {
         setSearchQuery(input);
     };
 
+    const showDetails = (product: Product) => {
+        console.log(JSON.stringify(product.barcode));
+        router.push({
+          pathname: "/productDetails",
+          params: { barcode: JSON.stringify(product.barcode) }, 
+        });
+      };
+
   return {
     products,
     loading,
     searchQuery,
-    handleBarcodeInput
+    handleBarcodeInput,
+    showDetails
   }
 }
