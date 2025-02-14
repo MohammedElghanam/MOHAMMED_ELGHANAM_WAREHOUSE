@@ -47,24 +47,6 @@ export default function useProducts() {
     useEffect(() => {
         let filtered = [...products];
 
-        // if (selectedCategory !== 'All') {
-        //     filtered = filtered.filter(product => {
-        //         if (selectedCategory === 'Name') {
-        //             return product.name.toLowerCase().includes(searchQuery.toLowerCase());
-        //         }
-        //         if (selectedCategory === 'Price') {
-        //             return product.price.toString().includes(searchQuery);
-        //         }
-        //         if (selectedCategory === 'Type') {
-        //             return product.type.toLowerCase().includes(searchQuery.toLowerCase());
-        //         }
-        //         if (selectedCategory === 'Supplier') {
-        //             return product.supplier && product.supplier.toLowerCase().includes(searchQuery.toLowerCase());
-        //         }
-        //         return true;
-        //     });
-        // }
-
         filtered = products.filter(product =>
           product.barcode.includes(searchQuery.toLowerCase())
         );

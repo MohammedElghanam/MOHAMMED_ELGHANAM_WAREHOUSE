@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     },
     headerIcon: {
         marginHorizontal: 8,
+        marginLeft: 5,
     },
     searchWrapper: {
         overflow: 'hidden',
