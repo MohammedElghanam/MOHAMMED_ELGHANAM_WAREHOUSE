@@ -39,13 +39,31 @@ export default function _layout() {
                     //     <Ionicons name="home" size={24} color={'red'} />
                     // ),
                 }}
+            />            
+            <Tabs.Screen 
+                name="favorties" 
+                options={{ 
+                    title: 'favorties',
+                    tabBarShowLabel: true,
+                    tabBarIcon: ({ color, size }) => <Ionicons name="heart-outline" size={size} color={color} />,
+                    headerShown: false,
+                }}
             />
             <Tabs.Screen 
                 name="productScanner" 
                 options={{ 
                     title: 'Scanner',
                     tabBarShowLabel: true,
-                    tabBarIcon: ({ color, size }) => <Ionicons name="barcode" size={size} color={color} />,
+                    tabBarIcon: ({ color, size }) => <Ionicons name="qr-code-outline" size={size} color={color} />,
+                    headerShown: false,
+                }}
+            />
+            <Tabs.Screen 
+                name="analytics" 
+                options={{ 
+                    title: 'analytics',
+                    tabBarShowLabel: true,
+                    tabBarIcon: ({ color, size }) => <Ionicons name="analytics" size={size} color={color} />,
                     headerShown: false,
                 }}
             />
