@@ -8,6 +8,8 @@ export default function useProducts() {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
     type Stock = {
       quantity: number;
@@ -43,11 +45,42 @@ export default function useProducts() {
     }, []);
 
     useEffect(() => {
-        const result = products.filter(product =>
+        let filtered = [...products];
+
+        // if (selectedCategory !== 'All') {
+        //     filtered = filtered.filter(product => {
+        //         if (selectedCategory === 'Name') {
+        //             return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+        //         }
+        //         if (selectedCategory === 'Price') {
+        //             return product.price.toString().includes(searchQuery);
+        //         }
+        //         if (selectedCategory === 'Type') {
+        //             return product.type.toLowerCase().includes(searchQuery.toLowerCase());
+        //         }
+        //         if (selectedCategory === 'Supplier') {
+        //             return product.supplier && product.supplier.toLowerCase().includes(searchQuery.toLowerCase());
+        //         }
+        //         return true;
+        //     });
+        // }
+
+        filtered = products.filter(product =>
           product.barcode.includes(searchQuery.toLowerCase())
         );
-        setFilteredProducts(result);
-    }, [searchQuery, products]);
+
+        if (selectedCategory === 'Name') {
+            filtered.sort((a, b) => sortOrder === 'asc' 
+                ? a.name.localeCompare(b.name) 
+                : b.name.localeCompare(a.name));
+        } else if (selectedCategory === 'Price Top') {
+            filtered.sort((a, b) => b.price - a.price); 
+        } else if (selectedCategory === 'Price Lowest') {
+            filtered.sort((a, b) => a.price - b.price);
+        }
+
+        setFilteredProducts(filtered);
+    }, [selectedCategory, searchQuery, products, sortOrder]);
 
     const handleBarcodeInput = (input: string) => {
         setSearchQuery(input);
@@ -60,6 +93,7 @@ export default function useProducts() {
         });
     };
 
+
     return {
         products,
         loading,
@@ -67,5 +101,6 @@ export default function useProducts() {
         handleBarcodeInput,
         showDetails,
         filteredProducts,
+        setSelectedCategory,
     };
 }
