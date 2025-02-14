@@ -21,7 +21,7 @@ type Product = {
 
 export default function Index() {
 
-    const { filteredProducts, loading, searchQuery, handleBarcodeInput, showDetails } = useProducts();
+    const { filteredProducts, loading, searchQuery, handleBarcodeInput, showDetails, setSelectedCategory } = useProducts();
 
   
   if (loading) {
@@ -36,15 +36,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
 
-        {/* <CategoryFiltrage /> */}
-
         <Header searchQuery={searchQuery} handleBarcodeInput={handleBarcodeInput} />
 
-        {/* <TextInput
-            placeholder="Search by name"
-            value={searchQuery}
-            onChangeText={(text) => handleBarcodeInput(text)}
-        /> */}
+        <CategoryFiltrage setSelectedCategory={setSelectedCategory} />
 
     <View style={styles.productContainer}>
       <FlatList
