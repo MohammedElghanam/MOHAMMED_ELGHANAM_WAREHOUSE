@@ -54,31 +54,6 @@ const ProductDetailsPage = () => {
         }
       }, [barId, products]);
 
-    // const handleUpdate = async () => {
-    //     if (product && selectedStockId) {
-    //         console.log('\n\n\n product',product);
-    //         console.log('stock id',selectedStockId);
-            
-            
-    //       try {
-    //         const updatedStocks = product.stocks.map(stock =>
-    //           stock.id === selectedStockId ? { ...stock, quantity: parseInt(updateQuantity, 10) } : stock
-    //         );
-
-    //         console.log("update stock",updatedStocks);
-            
-    
-    //         await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/products/${product.id}`, { stocks: updatedStocks });
-    
-    //         setProduct({ ...product, stocks: updatedStocks });
-    //         setSelectedStockId(null);
-    //       } catch (error) {
-    //         console.error('Error updating stock:', error);
-    //       }
-    //     }
-    // };
-    
-
     const handleUpdate = async () => {
         if (product && selectedStockId) {
     
