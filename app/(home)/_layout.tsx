@@ -58,15 +58,6 @@ export default function _layout() {
                     headerShown: false,
                 }}
             />
-            <Tabs.Screen 
-                name="analytics" 
-                options={{ 
-                    title: 'analytics',
-                    tabBarShowLabel: true,
-                    tabBarIcon: ({ color, size }) => <Ionicons name="analytics" size={size} color={color} />,
-                    headerShown: false,
-                }}
-            />
         </Tabs>
     </>
   )
