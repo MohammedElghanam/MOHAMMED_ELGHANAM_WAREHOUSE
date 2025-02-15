@@ -4,6 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Alert } from "react-native";
 import useValidation from "../validation/useValidation";
 import { useRouter } from "expo-router";
+import axios from 'axios'
 
 export default function useCreate({codeScanned}: { codeScanned: string }) {
     const router = useRouter();
@@ -74,6 +75,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         const warehousemanId = await getTokenData();
         
         const newProduct = {
+            id: Math.floor(Math.random() * 1000),
             name,
             type,
             barcode,
@@ -83,6 +85,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
             image,
             stocks: [
                 {
+                    id: Math.floor(Math.random() * 500),
                     name: stockName,
                     quantity: parseInt(quantity),
                     localisation: {
@@ -96,6 +99,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         try {
             
             await insertProduct(newProduct);
+            await updateStatistqueStock(newProduct);
             Alert.alert('Success', 'Product added successfully!');
 
             setName('');
@@ -176,6 +180,24 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
           console.error('Error retrieving token:', error);
         }
     };
+
+    const updateStatistqueStock = async (product: Product) => {
+
+        const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/statistics`);
+        const statistics = response.data;
+
+        statistics.totalProducts += 1;
+        product.stocks.forEach(stock => {
+            statistics.totalStockValue += product.price * stock.quantity;
+        });
+
+        if (product.stocks.some(stock => stock.quantity === 0)) {
+            statistics.outOfStock += 1; 
+        }
+
+        await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`, statistics);
+
+    }
 
 
     return {

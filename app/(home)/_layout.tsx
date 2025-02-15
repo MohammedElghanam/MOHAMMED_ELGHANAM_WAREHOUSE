@@ -8,7 +8,7 @@ export default function _layout() {
 
   return (
     <>
-        <StatusBar backgroundColor="#B2A5FF" style="light" />
+        <StatusBar backgroundColor="#B2A5FF" barStyle="light-content" />
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: '#B2A5FF',
