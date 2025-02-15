@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Laptop HP Pavilion",
       "type": "Informatique",
       "barcode": "11",
@@ -39,11 +39,12 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Clavier Mécanique Logitech",
       "type": "Accessoires",
       "barcode": "9876543210987",
       "price": 100,
+      "solde": 1100,
       "supplier": "Logitech",
       "image": "https://in-media.apjonlinecdn.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/8/a/8aa01aa.png",
       "stocks": [
@@ -60,7 +61,7 @@
         {
           "id": 2991,
           "name": "Lazari H2",
-          "quantity": 5,
+          "quantity": 12,
           "localisation": {
             "city": "Oujda",
             "latitude": 34.689404,
@@ -76,7 +77,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Pc Gamer Omen By HP",
       "type": "Informatique",
       "barcode": "1236543210987",
@@ -90,187 +91,11 @@
           "at": "2025-02-02"
         }
       ]
-    },
-    {
-      "id": 1,
-      "name": "Laptop HP Pavilion",
-      "type": "Informatique",
-      "barcode": "1234567890123",
-      "price": 1200,
-      "solde": 1100,
-      "supplier": "HP",
-      "image": "https://mediazone.ma/uploads/images/products/16412/landing-page/assets/images/swiper-1.png",
-      "stocks": [
-        {
-          "id": 1999,
-          "name": "Gueliz B2",
-          "quantity": 21,
-          "localisation": {
-            "city": "Marrakesh",
-            "latitude": 31.628674,
-            "longitude": -7.992047
-          }
-        },
-        {
-          "id": 2991,
-          "name": "Lazari H2",
-          "quantity": 24,
-          "localisation": {
-            "city": "Oujda",
-            "latitude": 34.689404,
-            "longitude": -1.912823
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-02"
-        }
-      ]
-    },
-    {
-      "id": 1,
-      "name": "Laptop HP Pavilion",
-      "type": "Informatique",
-      "barcode": "1234567890123",
-      "price": 1200,
-      "solde": 1100,
-      "supplier": "HP",
-      "image": "https://mediazone.ma/uploads/images/products/16412/landing-page/assets/images/swiper-1.png",
-      "stocks": [
-        {
-          "id": 1999,
-          "name": "Gueliz B2",
-          "quantity": 21,
-          "localisation": {
-            "city": "Marrakesh",
-            "latitude": 31.628674,
-            "longitude": -7.992047
-          }
-        },
-        {
-          "id": 2991,
-          "name": "Lazari H2",
-          "quantity": 24,
-          "localisation": {
-            "city": "Oujda",
-            "latitude": 34.689404,
-            "longitude": -1.912823
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-02"
-        }
-      ]
-    },
-    {
-      "id": "1832",
-      "name": "Test",
-      "type": "Informatique",
-      "barcode": "5200135700072",
-      "price": 15,
-      "solde": 862,
-      "supplier": "Sdgg",
-      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/09b33af2-e6d7-4520-b05d-473797bf3f80.jpeg",
-      "stocks": [
-        {
-          "name": "Gueliz B2",
-          "quantity": 47,
-          "localisation": {
-            "city": "Oujda"
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-12"
-        }
-      ]
-    },
-    {
-      "id": "cf1e",
-      "name": "Wahd lbnt lbi3",
-      "type": "Informatique",
-      "barcode": "078742009520",
-      "price": 158,
-      "solde": 74,
-      "supplier": "Asdfgh",
-      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/cc1f782d-b428-4b17-81b1-a8b19af5ec62.jpeg",
-      "stocks": [
-        {
-          "name": "Gueliz B2",
-          "quantity": 9,
-          "localisation": {
-            "city": "Marrakesh"
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-13"
-        }
-      ]
-    },
-    {
-      "id": "c263",
-      "name": "Anas",
-      "type": "Electronics",
-      "barcode": "798716163545",
-      "price": 58,
-      "solde": 74,
-      "supplier": "Test",
-      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/3fc90977-6711-4922-ab8d-c1114c0f2f32.png",
-      "stocks": [
-        {
-          "name": "Lazari H2",
-          "quantity": 6,
-          "localisation": {
-            "city": "Oujda"
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-13"
-        }
-      ]
-    },
-    {
-      "id": "af26",
-      "name": "Hanane",
-      "type": "Informatique",
-      "barcode": "075278950241",
-      "price": 14,
-      "solde": 58,
-      "supplier": "Qwe",
-      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/085969f3-225b-44b8-b952-e6a345e5cfdf.png",
-      "stocks": [
-        {
-          "name": "Gueliz B2",
-          "quantity": 7,
-          "localisation": {
-            "city": "Marrakesh"
-          }
-        }
-      ],
-      "editedBy": [
-        {
-          "warehousemanId": 1333,
-          "at": "2025-02-13"
-        }
-      ]
     }
   ],
   "warehousemans": [
     {
-      "id": 1333,
+      "id": "1333",
       "name": "Amine Boutaleb",
       "dob": "1988-05-02",
       "city": "Oujda",
@@ -278,7 +103,7 @@
       "warehouseId": 1999
     },
     {
-      "id": 1444,
+      "id": "1444",
       "name": "Karim El Mansouri",
       "dob": "1990-09-15",
       "city": "Marrakesh",
@@ -287,10 +112,42 @@
     }
   ],
   "statistics": {
+    "item": {
+      "totalProducts": 3,
+      "outOfStock": 1,
+      "totalStockValue": 70,
+      "mostAddedProducts": [
+        {
+          "productId": "2",
+          "stockId": 1999,
+          "newQuantity": 39
+        },
+        {
+          "productId": "2",
+          "stockId": 1999,
+          "newQuantity": 40
+        },
+        {
+          "productId": "2",
+          "stockId": 2991,
+          "newQuantity": 22
+        }
+      ],
+      "mostRemovedProducts": [
+        {
+          "productId": "2",
+          "stockId": 2991,
+          "newQuantity": 12
+        },
+        {
+          "productId": "2",
+          "stockId": 1999,
+          "newQuantity": 20
+        }
+      ]
+    },
     "totalProducts": 3,
     "outOfStock": 1,
-    "totalStockValue": 70,
-    "mostAddedProducts": [],
-    "mostRemovedProducts": []
+    "totalStockValue": 70
   }
 }
