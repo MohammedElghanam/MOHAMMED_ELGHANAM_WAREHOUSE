@@ -13,7 +13,7 @@
         {
           "id": 1999,
           "name": "Gueliz B2",
-          "quantity": 21,
+          "quantity": 5,
           "localisation": {
             "city": "Marrakesh",
             "latitude": 31.628674,
@@ -23,7 +23,7 @@
         {
           "id": 2991,
           "name": "Lazari H2",
-          "quantity": 24,
+          "quantity": 19,
           "localisation": {
             "city": "Oujda",
             "latitude": 34.689404,
@@ -112,37 +112,43 @@
     }
   ],
   "statistics": {
+    "item": {
+      "totalProducts": 3,
+      "outOfStock": 1,
+      "totalStockValue": 70,
+      "mostAddedProducts": [],
+      "mostRemovedProducts": []
+    },
     "totalProducts": 3,
     "outOfStock": 1,
     "totalStockValue": 70,
     "mostAddedProducts": [
-        {
-          "productId": "2",
-          "stockId": 1999,
-          "newQuantity": 39
-        },
-        {
-          "productId": "2",
-          "stockId": 1999,
-          "newQuantity": 40
-        },
-        {
-          "productId": "2",
-          "stockId": 2991,
-          "newQuantity": 22
-        }
+      {
+        "productId": "1",
+        "stockId": 1999,
+        "stockName": "Gueliz B2",
+        "newQuantity": 7
+      },
+      {
+        "productId": "1",
+        "stockId": 2991,
+        "stockName": "Lazari H2",
+        "newQuantity": 26
+      }
     ],
     "mostRemovedProducts": [
-        {
-          "productId": "2",
-          "stockId": 2991,
-          "newQuantity": 12
-        },
-        {
-          "productId": "2",
-          "stockId": 1999,
-          "newQuantity": 20
-        }
+      {
+        "productId": "1",
+        "stockId": 2991,
+        "stockName": "Lazari H2",
+        "newQuantity": 19
+      },
+      {
+        "productId": "1",
+        "stockId": 1999,
+        "stockName": "Gueliz B2",
+        "newQuantity": 5
+      }
     ]
   }
 }

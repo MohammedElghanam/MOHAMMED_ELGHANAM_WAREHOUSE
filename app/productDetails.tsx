@@ -29,6 +29,7 @@ const ProductDetailsPage = () => {
       const [barId, setBarId] = useState('');
       const [updateQuantity, setUpdateQuantity] = useState('');
       const [selectedStockId, setSelectedStockId] = useState<string | null>(null);
+      const [selectedStockName, setSelectedStockName] = useState<string | null>(null);
 
       const { barcode } = useLocalSearchParams();
       const { products } = useProducts();
@@ -54,9 +55,9 @@ const ProductDetailsPage = () => {
         }
       }, [barId, products]);
 
+      
     const handleUpdate = async () => {
         if (product && selectedStockId) {
-    
             try {
                 const updatedStocks = product.stocks.map(stock =>
                     stock.id === selectedStockId ? { ...stock, quantity: parseInt(updateQuantity, 10) } : stock
@@ -70,18 +71,36 @@ const ProductDetailsPage = () => {
                 const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/statistics`);
                 const statistics = response.data;
     
-                const productUpdate = { productId: product.id, stockId: selectedStockId, newQuantity };
+                const productUpdate = { productId: product.id, stockId: selectedStockId, stockName: selectedStockName, newQuantity };
     
                 if (newQuantity > oldQuantity) {
-                    statistics.mostAddedProducts.push(productUpdate);
+                    const addedProductIndex = statistics.mostAddedProducts.findIndex(
+                        item => item.productId === product.id && item.stockId === selectedStockId
+                    );
+    
+                    if (addedProductIndex !== -1) {
+                        statistics.mostAddedProducts[addedProductIndex].newQuantity = newQuantity;
+                    } else {
+                        statistics.mostAddedProducts.push(productUpdate);
+                    }
+    
                 } else if (newQuantity < oldQuantity) {
-                    statistics.mostRemovedProducts.push(productUpdate);
+                    const removedProductIndex = statistics.mostRemovedProducts.findIndex(
+                        item => item.productId === product.id && item.stockId === selectedStockId
+                    );
+    
+                    if (removedProductIndex !== -1) {
+                        statistics.mostRemovedProducts[removedProductIndex].newQuantity = newQuantity;
+                    } else {
+                        statistics.mostRemovedProducts.push(productUpdate);
+                    }
                 }
     
                 await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`, statistics);
     
                 setProduct({ ...product, stocks: updatedStocks });
                 setSelectedStockId(null);
+    
             } catch (error) {
                 console.error('Error updating stock:', error);
             }
@@ -90,9 +109,10 @@ const ProductDetailsPage = () => {
     
 
 
-      const handleStockSelect = (stockId: string) => {
+      const handleStockSelect = (stockId: string, stockName: string) => {
         setSelectedStockId(stockId);
-        // Set the current quantity of the selected stock into the input
+        setSelectedStockName(stockName)
+
         const selectedStock = product?.stocks.find(stock => stock.id === stockId);
         setUpdateQuantity(selectedStock ? selectedStock.quantity.toString() : '');
       };
@@ -166,7 +186,7 @@ const ProductDetailsPage = () => {
                   <View>
                     <Feather name="database" size={14} color="#4CAF50" />
                     <Text style={styles.stockText}>Quantity: {stock.quantity}</Text>
-                    <TouchableOpacity onPress={() => handleStockSelect(stock.id)}>
+                    <TouchableOpacity onPress={() => handleStockSelect(stock.id, stock.name)}>
                       <Text style={{ color: 'white' }}>Update Quantity</Text>
                     </TouchableOpacity>
                   </View>
