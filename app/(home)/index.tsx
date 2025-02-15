@@ -17,6 +17,7 @@ type Product = {
   price: number;
   type: string;
   stocks: Stock[];
+  barcode: string;
 };
 
 export default function Index() {

@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 interface StatisticsCardProps {
   title: string;
   value: number | string;
-  icon: string;
+  icon: keyof typeof Feather.glyphMap;
   color: string;
 }
 

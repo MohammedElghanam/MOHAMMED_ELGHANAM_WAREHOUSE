@@ -55,7 +55,7 @@ const ProductDetailsPage = () => {
         }
       }, [barId, products]);
 
-      
+
     const handleUpdate = async () => {
         if (product && selectedStockId) {
             try {
@@ -65,7 +65,7 @@ const ProductDetailsPage = () => {
     
                 const oldQuantity = product.stocks.find(stock => stock.id === selectedStockId)?.quantity || 0;
                 const newQuantity = parseInt(updateQuantity, 10);
-    
+                    
                 await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/products/${product.id}`, { stocks: updatedStocks });
     
                 const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/statistics`);
@@ -75,7 +75,7 @@ const ProductDetailsPage = () => {
     
                 if (newQuantity > oldQuantity) {
                     const addedProductIndex = statistics.mostAddedProducts.findIndex(
-                        item => item.productId === product.id && item.stockId === selectedStockId
+                        (item: any) => item.productId === product.id && item.stockId === selectedStockId
                     );
     
                     if (addedProductIndex !== -1) {
@@ -84,9 +84,22 @@ const ProductDetailsPage = () => {
                         statistics.mostAddedProducts.push(productUpdate);
                     }
     
-                } else if (newQuantity < oldQuantity) {
+                } else if (newQuantity === 0) {
+                    statistics.outOfStock++;
+    
                     const removedProductIndex = statistics.mostRemovedProducts.findIndex(
-                        item => item.productId === product.id && item.stockId === selectedStockId
+                        (item: any) => item.productId === product.id && item.stockId === selectedStockId
+                    );
+    
+                    if (removedProductIndex !== -1) {
+                        statistics.mostRemovedProducts[removedProductIndex].newQuantity = newQuantity;
+                    } else {
+                        statistics.mostRemovedProducts.push(productUpdate);
+                    }
+
+                }else if (newQuantity < oldQuantity ) {
+                    const removedProductIndex = statistics.mostRemovedProducts.findIndex(
+                        (item: any) => item.productId === product.id && item.stockId === selectedStockId
                     );
     
                     if (removedProductIndex !== -1) {
@@ -95,7 +108,6 @@ const ProductDetailsPage = () => {
                         statistics.mostRemovedProducts.push(productUpdate);
                     }
                 }
-    
                 await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`, statistics);
     
                 setProduct({ ...product, stocks: updatedStocks });
@@ -106,10 +118,10 @@ const ProductDetailsPage = () => {
             }
         }
     };
-    
-
 
       const handleStockSelect = (stockId: string, stockName: string) => {
+        console.log(stockId);
+        
         setSelectedStockId(stockId);
         setSelectedStockName(stockName)
 

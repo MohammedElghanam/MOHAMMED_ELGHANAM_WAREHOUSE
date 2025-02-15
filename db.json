@@ -5,15 +5,15 @@
       "name": "Laptop HP Pavilion",
       "type": "Informatique",
       "barcode": "11",
-      "price": 1200,
-      "solde": 1100,
+      "price": 120,
+      "solde": 110,
       "supplier": "HP",
       "image": "https://mediazone.ma/uploads/images/products/16412/landing-page/assets/images/swiper-1.png",
       "stocks": [
         {
           "id": 1999,
           "name": "Gueliz B2",
-          "quantity": 5,
+          "quantity": 1,
           "localisation": {
             "city": "Marrakesh",
             "latitude": 31.628674,
@@ -44,7 +44,7 @@
       "type": "Accessoires",
       "barcode": "9876543210987",
       "price": 100,
-      "solde": 1100,
+      "solde": 110,
       "supplier": "Logitech",
       "image": "https://in-media.apjonlinecdn.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/8/a/8aa01aa.png",
       "stocks": [
@@ -81,7 +81,7 @@
       "name": "Pc Gamer Omen By HP",
       "type": "Informatique",
       "barcode": "1236543210987",
-      "price": 11000,
+      "price": 1100,
       "supplier": "HP",
       "image": "https://technoplace.ma/11482-large_default/hp-omen-17-i7-7700hq-173-16gb-2tb-geforce-gtx-10.jpg",
       "stocks": [],
@@ -89,6 +89,32 @@
         {
           "warehousemanId": 1444,
           "at": "2025-02-02"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Allo",
+      "type": "Electronics",
+      "barcode": "012345678905",
+      "price": 200,
+      "solde": 30,
+      "supplier": "Anass",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/850c4f27-55b1-4c29-b872-1323626dd4dd.jpeg",
+      "stocks": [
+        {
+          "id": 243,
+          "name": "Lazari H2",
+          "quantity": 0,
+          "localisation": {
+            "city": "Oujda"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": "1333",
+          "at": "2025-02-15"
         }
       ]
     }
@@ -119,15 +145,15 @@
       "mostAddedProducts": [],
       "mostRemovedProducts": []
     },
-    "totalProducts": 3,
-    "outOfStock": 1,
-    "totalStockValue": 70,
+    "totalProducts": 4,
+    "outOfStock": 2,
+    "totalStockValue": 3520,
     "mostAddedProducts": [
       {
         "productId": "1",
         "stockId": 1999,
         "stockName": "Gueliz B2",
-        "newQuantity": 7
+        "newQuantity": 1
       },
       {
         "productId": "1",
@@ -147,7 +173,13 @@
         "productId": "1",
         "stockId": 1999,
         "stockName": "Gueliz B2",
-        "newQuantity": 5
+        "newQuantity": 0
+      },
+      {
+        "productId": "15",
+        "stockId": 243,
+        "stockName": "Lazari H2",
+        "newQuantity": 0
       }
     ]
   }
