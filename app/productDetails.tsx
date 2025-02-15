@@ -98,9 +98,9 @@ const ProductDetailsPage = () => {
                 const productUpdate = { productId: product.id, stockId: selectedStockId, newQuantity };
     
                 if (newQuantity > oldQuantity) {
-                    statistics.item.mostAddedProducts.push(productUpdate);
+                    statistics.mostAddedProducts.push(productUpdate);
                 } else if (newQuantity < oldQuantity) {
-                    statistics.item.mostRemovedProducts.push(productUpdate);
+                    statistics.mostRemovedProducts.push(productUpdate);
                 }
     
                 await axios.patch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`, statistics);
