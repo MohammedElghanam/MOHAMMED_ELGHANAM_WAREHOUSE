@@ -112,11 +112,10 @@
     }
   ],
   "statistics": {
-    "item": {
-      "totalProducts": 3,
-      "outOfStock": 1,
-      "totalStockValue": 70,
-      "mostAddedProducts": [
+    "totalProducts": 3,
+    "outOfStock": 1,
+    "totalStockValue": 70,
+    "mostAddedProducts": [
         {
           "productId": "2",
           "stockId": 1999,
@@ -132,8 +131,8 @@
           "stockId": 2991,
           "newQuantity": 22
         }
-      ],
-      "mostRemovedProducts": [
+    ],
+    "mostRemovedProducts": [
         {
           "productId": "2",
           "stockId": 2991,
@@ -144,10 +143,6 @@
           "stockId": 1999,
           "newQuantity": 20
         }
-      ]
-    },
-    "totalProducts": 3,
-    "outOfStock": 1,
-    "totalStockValue": 70
+    ]
   }
 }
