@@ -4,9 +4,11 @@ import { Link, Redirect, useRouter } from 'expo-router';
 
 export default function Index() {
     const router = useRouter();
+    console.log(router);
+    
     useEffect(() => {
         const checkToken = async () => {
-            // await AsyncStorage.removeItem('token');
+            await AsyncStorage.removeItem('token');
             const token = await AsyncStorage.getItem('token');
             if (token) {
                 router.replace('/(home)');

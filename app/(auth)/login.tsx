@@ -35,6 +35,7 @@ const Login = () => {
                 secureTextEntry
                 value={secretKey}
                 onChangeText={setSecretKey}
+                accessibilityLabel="secretKey-input"
             />
         </View>
         {errors && <Text style={styles.error}>{errors}</Text>}
