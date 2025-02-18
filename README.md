@@ -1,50 +1,55 @@
-# Welcome to your Expo app 👋
+# 🏪 Application Mobile de Gestion de Stocks
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📖 Introduction
 
-## Get started
+L'application Gestion de Stocks permet aux magasins de gérer efficacement leur inventaire grâce à une interface intuitive et des fonctionnalités telles que :
 
-1. Install dependencies
+📱 Scanner de code-barres pour identifier rapidement les produits.
+
+⏱️ Suivi en temps réel pour ajouter, retirer et suivre les produits instantanément.
+
+Cette application optimise la gestion des stocks et réduit les erreurs humaines.
+
+## 🚀 Comment Exécuter le Projet
+
+### ✅ Prérequis
+
+- 🖥️ Node.js installé
+ 
+- 📦 Expo CLI : npm install -g expo-cli
+
+- 📂 JSON Server : npm install -g json-server
+
+## 🛠️ Étapes d'Installation
+
+1. Cloner le projet
 
    ```bash
-   npm install
+   git clone https://github.com/MohammedElghanam/MOHAMMED_ELGHANAM_WAREHOUSE.git
+   cd MOHAMMED_ELGHANAM_WAREHOUSE
    ```
 
-2. Start the app
+2. Installer les dépendances
+
+   ```bash
+    npm install
+   ```
+
+3. Lancer le serveur JSON :
+
+   ```bash
+    npx json-server db.json
+   ```
+
+4. Démarrer l'application
 
    ```bash
     npx expo start
+    or
+    npm run start
    ```
+   Ouvrez l'application via Expo Go sur votre appareil ou émulateur.
 
-In the output, you'll find options to open the app in a
+   ## 📋 Contexte du projet
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+🛒 Un magasin souhaite moderniser et simplifier la gestion de son stock en offrant aux magasiniers une solution mobile facile et rapide
