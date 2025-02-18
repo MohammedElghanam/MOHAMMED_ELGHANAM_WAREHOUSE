@@ -196,16 +196,16 @@ const ProductDetailsPage = () => {
                   </View>
                 ) : (
                   <View>
-                    <Feather name="database" size={14} color="#4CAF50" />
+                    <Feather name="database" size={14} color="#B2A5FF" />
                     <Text style={styles.stockText}>Quantity: {stock.quantity}</Text>
                     <TouchableOpacity onPress={() => handleStockSelect(stock.id, stock.name)}>
-                      <Text style={{ color: 'white' }}>Update Quantity</Text>
+                      <Text style={{ color: '#B2A5FF' }}>Update Quantity</Text>
                     </TouchableOpacity>
                   </View>
                 )}
             </View>
             <View style={styles.stockInfoRow}>
-              <Feather name="map-pin" size={14} color="#4CAF50" />
+              <Feather name="map-pin" size={14} color="#B2A5FF" />
               <Text style={styles.stockText}>{stock.localisation.city}</Text>
             </View>
           </View>
@@ -218,7 +218,7 @@ const ProductDetailsPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#fff',
   },
   loadingContainer: {
     flex: 1,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   imageContainer: {
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#F5F5F5',
     padding: 16,
   },
   productImage: {
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: '#black',
     marginBottom: 12,
   },
   priceContainer: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 20,
-    color: '#4CAF50',
+    color: '#B2A5FF',
     fontWeight: '800',
   },
   productSolde: {
@@ -287,26 +287,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 16,
     paddingBottom: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#2D2D2D',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#B2A5FF',
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: 'black',
   },
   stockItem: {
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#fff',
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
-    borderWidth: 1,
-    borderColor: '#2D2D2D',
+    borderWidth: 0.5,
+    borderColor: '#B2A5FF',
   },
   stockName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF',
+    color: 'black',
     marginBottom: 8,
   },
   stockInfoRow: {
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 32,
     right: 32,
-    backgroundColor: '#FF5252',
+    backgroundColor: '#B2A5FF',
     paddingVertical: 4,
     paddingHorizontal: 12,
     borderRadius: 20,
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#B2A5FF',
     padding: 10,
     marginTop: 10,
     borderRadius: 5,
