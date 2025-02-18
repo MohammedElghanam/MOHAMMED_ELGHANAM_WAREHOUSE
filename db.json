@@ -13,7 +13,7 @@
         {
           "id": 1999,
           "name": "Gueliz B2",
-          "quantity": 1,
+          "quantity": 2,
           "localisation": {
             "city": "Marrakesh",
             "latitude": 31.628674,
@@ -51,7 +51,7 @@
         {
           "id": 1999,
           "name": "Gueliz B2",
-          "quantity": 20,
+          "quantity": 0,
           "localisation": {
             "city": "Marrakesh",
             "latitude": 31.628674,
@@ -61,7 +61,7 @@
         {
           "id": 2991,
           "name": "Lazari H2",
-          "quantity": 12,
+          "quantity": 0,
           "localisation": {
             "city": "Oujda",
             "latitude": 34.689404,
@@ -117,6 +117,84 @@
           "at": "2025-02-15"
         }
       ]
+    },
+    {
+      "id": 539,
+      "name": "Guru",
+      "type": "Informatique",
+      "barcode": "5901234123457",
+      "price": 12,
+      "solde": 75,
+      "supplier": "Mohammed",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/94c1cc92-4e59-4a2e-9e79-492a6a962f58.jpeg",
+      "stocks": [
+        {
+          "id": 422,
+          "name": "Lazari H2",
+          "quantity": 75,
+          "localisation": {
+            "city": "Oujda"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": "1333",
+          "at": "2025-02-17"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Weld nass",
+      "type": "Electronics",
+      "barcode": "123456789012",
+      "price": 23,
+      "solde": 199,
+      "supplier": "Anass",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/3688f82e-6664-416a-bd6c-977690c9d30b.jpeg",
+      "stocks": [
+        {
+          "id": 206,
+          "name": "Gueliz B2",
+          "quantity": 80,
+          "localisation": {
+            "city": "Oujda"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": "1333",
+          "at": "2025-02-17"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "BIANNA",
+      "type": "Electronics",
+      "barcode": "7123456789015",
+      "price": 100,
+      "solde": 15,
+      "supplier": "Mohammed",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FMOHAMMED_ELGHANAM_WAREHOUSE-d21b6292-2fe6-4e62-9e95-487e5263199d/ImagePicker/1e39079d-2e0e-4eec-9120-9e2233b0230a.jpeg",
+      "stocks": [
+        {
+          "id": 206,
+          "name": "Lazari H2",
+          "quantity": 250,
+          "localisation": {
+            "city": "Marrakesh"
+          }
+        }
+      ],
+      "editedBy": [
+        {
+          "warehousemanId": "1333",
+          "at": "2025-02-17"
+        }
+      ]
     }
   ],
   "warehousemans": [
@@ -145,15 +223,15 @@
       "mostAddedProducts": [],
       "mostRemovedProducts": []
     },
-    "totalProducts": 4,
-    "outOfStock": 2,
-    "totalStockValue": 3520,
+    "totalProducts": 7,
+    "outOfStock": 4,
+    "totalStockValue": 31260,
     "mostAddedProducts": [
       {
         "productId": "1",
         "stockId": 1999,
         "stockName": "Gueliz B2",
-        "newQuantity": 1
+        "newQuantity": 2
       },
       {
         "productId": "1",
@@ -178,6 +256,18 @@
       {
         "productId": "15",
         "stockId": 243,
+        "stockName": "Lazari H2",
+        "newQuantity": 0
+      },
+      {
+        "productId": "2",
+        "stockId": 1999,
+        "stockName": "Gueliz B2",
+        "newQuantity": 0
+      },
+      {
+        "productId": "2",
+        "stockId": 2991,
         "stockName": "Lazari H2",
         "newQuantity": 0
       }

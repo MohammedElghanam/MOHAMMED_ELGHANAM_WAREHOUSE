@@ -79,12 +79,12 @@ const productCreate = () => {
             </View>
 
             <View style={styles.inputContainer}>
-            <Picker selectedValue={type} onValueChange={setType} style={styles.picker}>
-                <Picker.Item label="Select Type" value="" />
-                <Picker.Item label="Informatique" value="Informatique" />
-                <Picker.Item label="Electronics" value="Electronics" />
-            </Picker>
-            {errors.type && <Text style={styles.error}>{errors.type}</Text>}
+                <Picker selectedValue={type} onValueChange={setType} style={styles.picker}>
+                    <Picker.Item label="Select Type" value="" />
+                    <Picker.Item label="Informatique" value="Informatique" />
+                    <Picker.Item label="Electronics" value="Electronics" />
+                </Picker>
+                {errors.type && <Text style={styles.error}>{errors.type}</Text>}
             </View>
             
             <View style={styles.inputContainer}>

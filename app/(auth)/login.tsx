@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Image, } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import useLogin from '@/hooks/auth/useLogin';
  
@@ -30,20 +30,23 @@ const Login = () => {
             />
             <TextInput
                 style={styles.input}
-                placeholder="Enter secret key"
+                placeholder="Secretkey"
                 placeholderTextColor={errors ? 'red' : 'gray'}
                 secureTextEntry
                 value={secretKey}
                 onChangeText={setSecretKey}
+                // accessibilityLabel="secretKey-input"
             />
         </View>
         {errors && <Text style={styles.error}>{errors}</Text>}
 
-        <View style={styles.btn}>
-            <Text style={styles.text} 
-                onPress={handleSubmit} 
-            >Login</Text>
-        </View>
+        <TouchableOpacity 
+            // accessibilityLabel="login-button"  
+            onPress={handleSubmit}  
+            style={styles.btn}
+        >
+            <Text style={styles.text} >Login</Text>
+        </TouchableOpacity>
 
     </View>
   );

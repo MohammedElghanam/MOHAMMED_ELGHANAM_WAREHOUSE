@@ -214,6 +214,7 @@ export default function useCreate({codeScanned}: { codeScanned: string }) {
         setName,
         setType,
         setPrice,
+        setImage,
         setStockName,
         setBarcode,
         setQuantity,

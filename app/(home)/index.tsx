@@ -1,8 +1,9 @@
 import CategoryFiltrage from '@/components/UI/categoryFiltrage';
 import Header from '@/components/UI/header';
 import ProductCard from '@/components/UI/productCard';
+import SoldCard from '@/components/UI/soldCard';
 import useProducts from '@/hooks/products/useProducts';
-import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions, TextInput } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, Dimensions, TextInput, ScrollView } from 'react-native';
 const { width } = Dimensions.get('window');
 
 type Stock = {
@@ -22,8 +23,9 @@ type Product = {
 
 export default function Index() {
 
-    const { filteredProducts, loading, searchQuery, handleBarcodeInput, showDetails, setSelectedCategory } = useProducts();
+    const { products, filteredProducts, loading, searchQuery, handleBarcodeInput, showDetails, setSelectedCategory } = useProducts();
 
+    const soldProducts = products.filter(product => product.solde > 0);
   
   if (loading) {
     return (
@@ -41,7 +43,28 @@ export default function Index() {
 
         <CategoryFiltrage setSelectedCategory={setSelectedCategory} />
 
-    <View style={styles.productContainer}>
+        
+
+    <ScrollView style={styles.productContainer}>
+
+        <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>🔥 Sold</Text>
+            <Text style={styles.viewAll}>View All</Text>
+        </View>
+
+        <FlatList
+            data={soldProducts}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }: { item: Product }) => <SoldCard product={item} /> }
+            keyExtractor={item => item.id}
+        />
+
+        <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>🛒 Products</Text>
+            <Text style={styles.viewAll}>View All</Text>
+        </View>
+
       <FlatList
         data={filteredProducts}
         keyExtractor={(item: Product, index) => index.toString()}
@@ -49,7 +72,7 @@ export default function Index() {
         columnWrapperStyle={styles.row} 
         renderItem={({ item }: { item: Product }) => <ProductCard product={item} showD={showDetails} /> }
       />
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -63,7 +86,7 @@ const styles = StyleSheet.create({
   productContainer: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
   },
   row: {
     justifyContent: 'space-between',
@@ -112,5 +135,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    marginVertical: 10,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  viewAll: {
+    fontSize: 14,
+    color: '#B2A5FF',
+    fontWeight: '600',
   },
 });

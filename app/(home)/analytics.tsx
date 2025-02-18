@@ -40,17 +40,18 @@ export default function Analytics() {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`);
-        const data = await response.json();
-        setStats(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/statistics`);
+      const data = await response.json();
+      setStats(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
